@@ -20,7 +20,7 @@ const Login: React.FC = () => {
           <span className='mb-2 block text-white'>Email</span>
           <input
             className='bg-secondaryDark h-8 p-2 rounded-md outline-none shadow-sm text-textInputField'
-            type='text'
+            type='email'
             placeholder='example@email.com'
             required
           />
