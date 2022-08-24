@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/App.context'
-import googleIcon from '../assets/google.png'
 
 interface FormState {
   email: string
   password: string
 }
 
-const Login: React.FC = () => {
-  const { login, error, loginWithGoogle } = useContext(AppContext)
+const Register: React.FC = () => {
+  const { signup, error } = useContext(AppContext)
+
+  const navigate = useNavigate()
 
   const [inputValues, setInputValues] = useState<FormState>({
     email: '',
@@ -18,7 +19,7 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
-    await login(inputValues.email, inputValues.password)
+    await signup(inputValues.email, inputValues.password)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -26,10 +27,6 @@ const Login: React.FC = () => {
       ...inputValues,
       [e.target.name]: e.target.value
     })
-  }
-
-  const handleGoogleSignin = async (): Promise<void> => {
-    await loginWithGoogle()
   }
 
   useEffect(() => {
@@ -72,30 +69,21 @@ const Login: React.FC = () => {
             onChange={handleChange}
           />
         </label>
-        <div>
-          <img
-            className='cursor-pointer m-auto my-2'
-            width={48}
-            src={googleIcon}
-            alt='google'
-            onClick={handleGoogleSignin}
-          />
-        </div>
         <button
           className='mt-10 h-14 rounded-md shadow-md bg-ferrariRed text-white'
           type='submit'
         >
-          Login
+          Signup
         </button>
       </form>
       <NavLink
-        to='/signup'
+        to='/login'
         className='text-white text-md hover:underline hover:font-bold cursor-pointer'
       >
-        Signup
+        Login
       </NavLink>
     </main>
   )
 }
 
-export { Login }
+export { Register }
