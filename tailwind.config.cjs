@@ -5,7 +5,7 @@ module.exports = {
       backgroundColor: theme => ({
         ...theme('colors'),
         ferrariRed: '#fb100a',
-        prymaryDark: '#202020',
+        primaryDark: '#202020',
         secondaryDark: '#181818',
         veryLightPink: '#C7C7C7',
         textInputField: '#F7F7F7',
