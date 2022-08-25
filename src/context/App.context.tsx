@@ -142,13 +142,15 @@ const AppProvider: any = ({ children }: Props) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      setUser({
-        ...user,
-        id: currentUser?.auth?.currentUser?.uid,
-        name: currentUser?.auth?.currentUser?.displayName,
-        email: currentUser?.auth?.currentUser?.email
-      })
-
+      if (!user.id) {
+        setUser({
+          ...user,
+          id: currentUser?.auth?.currentUser?.uid,
+          name: currentUser?.auth?.currentUser?.displayName,
+          email: currentUser?.auth?.currentUser?.email
+        })
+        getuser()
+      }
       return () => unsubscribe()
     })
   }, [])
@@ -160,9 +162,11 @@ const AppProvider: any = ({ children }: Props) => {
   const { videos, generateFakeVideos } = useVideos()
 
   useEffect(() => {
-    setTimeout(() => {
-      generateFakeVideos(10)
-    }, 1500)
+    if (!videos.title) {
+      setTimeout(() => {
+        generateFakeVideos(10)
+      }, 1500)
+    }
   }, [])
 
   const addVideo = (video: VideoData): void => {

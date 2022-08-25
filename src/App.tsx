@@ -16,45 +16,45 @@ const App: React.FC = () => {
         <Route
           path='/'
           element={
-            <ProtectedRoute>
+            <>
               <Layout>
                 <Home />
               </Layout>
-            </ProtectedRoute>
+            </>
           }
         />
         <Route
           path='/account'
           element={
-            <ProtectedRoute>
+            <>
               <Layout>
                 <Account />
               </Layout>
-            </ProtectedRoute>
+            </>
           }
         />
         <Route
           path='/detail'
           element={
-            <ProtectedRoute>
+            <>
               <ContentDetail />
-            </ProtectedRoute>
+            </>
           }
         />
         <Route
           path='/login'
           element={
-            <ProtectedRoute>
+            <>
               <Login />
-            </ProtectedRoute>
+            </>
           }
         />
         <Route
           path='/signup'
           element={
-            <ProtectedRoute>
+            <>
               <Register />
-            </ProtectedRoute>
+            </>
           }
         />
       </Routes>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+/* import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import { AppContext } from '../../context/App.context'
 import { Props } from '../../layout'
@@ -14,3 +14,4 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
 }
 
 export { ProtectedRoute }
+ */
