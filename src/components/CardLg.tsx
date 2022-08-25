@@ -1,12 +1,39 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../context/App.context'
+import { VideoData } from '../hooks/useVideos.hook'
 
-const CardLg: React.FC = () => {
+export interface Props {
+  video: VideoData
+}
+
+const CardLg: React.FC<Props> = ({ video }) => {
+  const { addVideo, videoDetail, navigation } = useContext(AppContext)
+
+  const addFavorite = (): void => {
+    addVideo(video)
+  }
+
+  const playVideo = (): void => {
+    videoDetail(video)
+    setTimeout(() => {
+      navigation('/detail')
+    }, 1500)
+  }
+
   return (
-    <article className='flex-col w-64 lg:w-96 h-72 shadow-md rounded-lg flex-none transform transition-all hover:-translate-y-4 hover:shadow-xl'>
-      <div className='w-full h-3/5 rounded-t-lg bg-[url("https://random.imagecdn.app/500/150")] bg-cover' />
+    <article className='flex-col w-full h-80 shadow-md rounded-lg flex-none transform transition-all hover:-translate-y-1 hover:shadow-xl'>
+      <div className='w-full h-3/5 rounded-t-lg bg-cover'>
+        <img
+          // width='384'
+          className='h-44 w-full'
+          src={`${video.image}`}
+          alt='VideoThumbnail'
+        />
+      </div>
       <div className='flex justify-between py-4'>
         <svg
-          className='w-6 h-6'
+          className='w-8 h-auto cursor-pointer'
+          onClick={playVideo}
           fill='currentColor'
           viewBox='0 0 20 20'
           xmlns='http://www.w3.org/2000/svg'
@@ -18,7 +45,8 @@ const CardLg: React.FC = () => {
           />
         </svg>
         <svg
-          className='w-6 h-6'
+          className='w-8 h-auto cursor-pointer'
+          onClick={addFavorite}
           fill='currentColor'
           viewBox='0 0 20 20'
           xmlns='http://www.w3.org/2000/svg'
@@ -30,7 +58,7 @@ const CardLg: React.FC = () => {
           />
         </svg>
       </div>
-      <p>Titulo descriptivo</p>
+      <p>{video.title}</p>
     </article>
   )
 }

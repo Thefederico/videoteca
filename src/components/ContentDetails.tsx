@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { AppContext } from '../context/App.context'
 
 const ContentDetail: React.FC = () => {
+  const { playVideo } = useContext(AppContext)
+
   return (
     <section className='bg-secondaryDark text-white'>
       <div className='w-full h-12 bg-primaryDark shadow-sm'>
@@ -27,16 +30,20 @@ const ContentDetail: React.FC = () => {
       <div className='px-12b bg-primaryDark shadow-md'>
         {/* <div className='border-t border-gray-50 ' /> */}
         <h2 className='py-8 text-center'>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit
+          {playVideo?.title}
         </h2>
         <div className='flex w-full justify-between pb-8 px-6'>
           <p className='w-1/2'>
-            <strong>Description:</strong> Lorem ipsum, dolor sit amet
-            consectetur adipisicing elit. Dignissimos eius cumque beatae illum
-            commodi maiores est natus, aperiam quisquam. Neque minus obcaecati
-            dolore cupiditate accusantium ex numquam eos in atque!
+            <strong>Description:</strong> {playVideo?.description}
           </p>
-          <span className='inline-block'><strong>Views:</strong> 234343</span>
+          <div className='flex flex-col'>
+            <p className='inline-block'>
+              <strong>Views:</strong> {playVideo?.views}
+            </p>
+            <p className='inline-block'>
+              <strong>uploaded:</strong> {playVideo?.uploaded?.toString()}
+            </p>
+          </div>
         </div>
       </div>
     </section>

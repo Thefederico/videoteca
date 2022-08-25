@@ -1,6 +1,9 @@
 import { useState } from 'react'
 
-function useLocalStorage (itemName: string, initialValue: [] | {}): [] | {} {
+function useLocalStorage (
+  itemName: string,
+  initialValue: [] | {} | any
+): [] | {} | any {
   const storage = window.localStorage
 
   const storageItem = storage.getItem(itemName)
@@ -21,11 +24,11 @@ function useLocalStorage (itemName: string, initialValue: [] | {}): [] | {} {
     setItem(newItem)
   }
 
-  const deleteItem = (): void => {
+  const deleteItem = (itemName: string): void => {
     storage.removeItem(itemName)
   }
 
-  return { item, saveItem, deleteItem }
+  return [item, saveItem]
 }
 
 export { useLocalStorage }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header } from '../components/Header'
 
-interface Props {
+export interface Props {
   children: JSX.Element | JSX.Element[]
 }
 

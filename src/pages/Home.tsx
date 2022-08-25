@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { AppContext } from '../context/App.context'
 import { Card } from '../components/Card'
-import { ContentCategory } from '../components/ContentCategory'
+import { FavoritesVideos } from '../components/FavoritesVideos'
 import { FeedVideos } from '../components/FeedVideos'
 
 const Home: React.FC = () => {
+  const { user } = useContext(AppContext)
+
+  useEffect(() => {
+    document.title = 'Videoteca'
+  }, [])
+
   return (
     <main className='bg-secondaryDark py-9 text-white'>
+      {user?.name && (
+        <h1 className='text-center text-2xl '>Hola {user?.name}</h1>
+      )}
       <FeedVideos />
-      <section>
-        <h2 className='text-xl px-4'>My favorites</h2>
-        <ContentCategory>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </ContentCategory>
+      <section className='px-8'>
+        <FavoritesVideos />
       </section>
     </main>
   )

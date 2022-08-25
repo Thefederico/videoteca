@@ -3,11 +3,18 @@ import { AppContext } from '../context/App.context'
 import { NavLink } from 'react-router-dom'
 
 const Header: React.FC = () => {
-  const { logout } = useContext(AppContext)
+  const { logout, searchValue, setSearchValue } = useContext(AppContext)
   const [menu, setMenu] = useState(false)
 
   const handleLogout = async (): Promise<void> => {
     await logout()
+  }
+
+  const handleSearchBar = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearchValue({
+      ...searchValue,
+      [e.target.name]: e.target.value
+    })
   }
 
   return (
@@ -25,7 +32,7 @@ const Header: React.FC = () => {
         </NavLink>
         <p className='hidden lg:block text-white'>Videoteca</p>
       </figure>
-      <form className='flex lg:mx-40 flex-1 items-center space-x-2 border border-gray-700 rounded-sm bg-secondaryDark px-2 py-1s '>
+      <div className='flex lg:mx-40 flex-1 items-center space-x-2 border border-gray-700 rounded-sm bg-secondaryDark px-2 py-1s '>
         <svg
           className='w-6 h-auto text-textInputField'
           fill='currentColor'
@@ -40,11 +47,13 @@ const Header: React.FC = () => {
         </svg>
         <input
           type='text'
+          name='value'
+          onChange={handleSearchBar}
+          value={searchValue.search}
           className='flex-1 bg-transparent outline-none text-textInputField'
           placeholder='Search video'
         />
-        <button type='submit' hidden />
-      </form>
+      </div>
       <section className='flex'>
         <svg
           className='w-12 h-auto  text-white cursor-pointer'

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Layout } from './layout'
 import { Home } from './pages/Home'
@@ -7,39 +7,56 @@ import { AppProvider } from './context/App.context'
 import { Register } from './pages/Register'
 import { Account } from './pages/Account'
 import { ContentDetail } from './components/ContentDetails'
-import { useVideos } from './hooks/useVideos.hook'
+import { ProtectedRoute } from './components/ProtectedRoute/index.route'
 
 const App: React.FC = () => {
-  const { videos, generateFakeVideos } = useVideos()
-
-  useEffect(() => {
-    generateFakeVideos(10)
-  }, [])
-
-  console.log(videos)
-
   return (
     <AppProvider>
       <Routes>
         <Route
           path='/'
           element={
-            <Layout>
-              <Home />
-            </Layout>
+            <ProtectedRoute>
+              <Layout>
+                <Home />
+              </Layout>
+            </ProtectedRoute>
           }
         />
         <Route
           path='/account'
           element={
-            <Layout>
-              <Account />
-            </Layout>
+            <ProtectedRoute>
+              <Layout>
+                <Account />
+              </Layout>
+            </ProtectedRoute>
           }
         />
-        <Route path='/detail' element={<ContentDetail />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Register />} />
+        <Route
+          path='/detail'
+          element={
+            <ProtectedRoute>
+              <ContentDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/login'
+          element={
+            <ProtectedRoute>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/signup'
+          element={
+            <ProtectedRoute>
+              <Register />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </AppProvider>
   )

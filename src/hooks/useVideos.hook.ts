@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { faker } from '@faker-js/faker'
 
-interface VideoData {
+export interface VideoData {
   title: string
-  uploaded: Date
-  views: string
+  uploaded: Date | string
+  views: string | number
   image: string
   description: string
 }
@@ -16,7 +16,7 @@ const useVideos = (): any => {
     const videos = []
     for (let index = 0; index < limit; index++) {
       videos.push({
-        title: faker.random.words(4),
+        title: faker.random.words(3),
         uploaded: faker.date.between(
           '2020-01-01T00:00:00.000Z',
           '2023-01-01T00:00:00.000Z'
@@ -34,4 +34,4 @@ const useVideos = (): any => {
   return { videos, generateFakeVideos }
 }
 
-export { useVideos, type VideoData }
+export { useVideos }
