@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Card: React.FC = () => {
+const CardLg: React.FC = () => {
   return (
-    <article className='flex-col w-48 h-64 shadow-md rounded-lg flex-none transform transition-all hover:-translate-y-4 hover:shadow-xl'>
+    <article className='flex-col w-64 lg:w-96 h-72 shadow-md rounded-lg flex-none transform transition-all hover:-translate-y-4 hover:shadow-xl'>
       <div className='w-full h-3/5 rounded-t-lg bg-[url("https://random.imagecdn.app/500/150")] bg-cover' />
       <div className='flex justify-between py-4'>
         <svg
@@ -35,4 +35,4 @@ const Card: React.FC = () => {
   )
 }
 
-export { Card }
+export { CardLg }

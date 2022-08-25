@@ -1,16 +1,21 @@
 import React from 'react'
 import { Card } from '../components/Card'
-import { CarouselVideos } from '../components/CarouselVideos'
+import { ContentCategory } from '../components/ContentCategory'
+import { FeedVideos } from '../components/FeedVideos'
 
 const Home: React.FC = () => {
   return (
-    <main className='bg-secondaryDark'>
+    <main className='bg-secondaryDark py-9 text-white'>
+      <FeedVideos />
       <section>
-        <h2>Latest videos</h2>
-        <CarouselVideos>
+        <h2 className='text-xl px-4'>My favorites</h2>
+        <ContentCategory>
           <Card />
           <Card />
-        </CarouselVideos>
+          <Card />
+          <Card />
+          <Card />
+        </ContentCategory>
       </section>
     </main>
   )
